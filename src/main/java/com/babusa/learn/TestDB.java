@@ -75,6 +75,11 @@ public class TestDB {
 
         Class.forName(drivers);
 
+
+        // Log details
+        DriverManager.setLogWriter(new PrintWriter(System.out));
+
+        // Get connection
         return DriverManager.getConnection(url, username, password);
     }
 }
