@@ -20,21 +20,25 @@ public class SQLTest02 extends AbstractSQLTestRunner {
     public void execute(Connection conn) throws SQLException, ClassNotFoundException, IOException {
         Statement stat = conn.createStatement();
 
-        DatabaseMetaData dbMetadata = conn.getMetaData();
+        try (ResultSet result = stat.executeQuery("SELECT * FROM EMPLOYEES WHERE FIRST_NAME = 'James'")) {
 
-        System.out.println("dbMetadata.getMaxConnections() : " + dbMetadata.getMaxConnections());
-        System.out.println("dbMetadata.getSQLStateType() : " + dbMetadata.getSQLStateType());
+            ResultSetMetaData resultSetMetaData= result.getMetaData();
 
-        try (ResultSet result = stat.executeQuery("SELECT * FROM EMPLOYEES WHERE FIRST_NAME = 'Jack'")) {
-            System.out.println("result.getFetchSize() : " + result.getFetchSize());
+            System.out.println("resultSetMetaData.getColumnCount() :" + resultSetMetaData.getColumnCount());
+            System.out.println();
+            System.out.println("resultSetMetaData.getColumnLabel(1) :" + resultSetMetaData.getColumnLabel(1));
+            System.out.println("resultSetMetaData.getColumnLabel(2) :" + resultSetMetaData.getColumnLabel(2));
+            System.out.println("resultSetMetaData.getColumnLabel(3) :" + resultSetMetaData.getColumnLabel(3));
 
-            if (result.next()) {
+            while (result.next()) {
+                System.out.println("");
+                System.out.println("> Printing Records...");
                 System.out.println("result.getString(1): " + result.getString(1));
+                System.out.println("result.getString(\"FIRST_NAME\"): " + result.getString("FIRST_NAME"));
+                System.out.println("result.getString(\"LAST_NAME\"): " + result.getString("LAST_NAME"));
                 System.out.println("result.getString(\"JOB_ID\"): " + result.getString("JOB_ID"));
                 System.out.println("result.getLong(\"Manager_ID\"): " + result.getLong("Manager_ID"));
-
             }
-
         }
     }
 }
