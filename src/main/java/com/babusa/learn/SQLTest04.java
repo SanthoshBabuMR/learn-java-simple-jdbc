@@ -16,10 +16,10 @@ public class SQLTest04 extends AbstractSQLTestRunner {
         DatabaseMetaData meta = conn.getMetaData();
         ResultSet mrs = meta.getTables(null, null, null, new String[] { "TABLE" });
         while(mrs.next()) {
-            String out = String.format("%s %s %s %s",
+            String out = String.format("%s %s; %s %s",
                     "Schema: ",
                     mrs.getString(2),
-                    "; Table: ",
+                    "Table: ",
                     mrs.getString(3));
             System.out.println(out);
         }
