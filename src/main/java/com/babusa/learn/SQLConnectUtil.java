@@ -25,14 +25,20 @@ public class SQLConnectUtil {
         in.close();
 
         String drivers = props.getProperty("jdbc.drivers");
-        if (drivers != null) System.setProperty("jdbc.drivers", drivers);
+        if (drivers != null) {
+            // 01. JDBC Driver Registeration by storing it properties
+            // System.out.println("JDBC Registration through System.setProperty(\"jdbc.drivers\", drivers); ");
+            System.setProperty("jdbc.drivers", drivers);
+        }
+
 
         String url = props.getProperty("jdbc.url");
         String username = props.getProperty("jdbc.username");
         String password = props.getProperty("jdbc.password");
 
-        // register driver
-        Class.forName(drivers);
+        // 02. alternative style of DB registration: Class.forName
+        // System.out.println("Class.forName(drivers);");
+        // Class.forName(drivers);
 
         // Log details
         // DriverManager.setLogWriter(new PrintWriter(System.out));
