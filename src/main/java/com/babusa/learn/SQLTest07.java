@@ -16,11 +16,17 @@ public class SQLTest07 extends AbstractSQLTestRunner {
         try {
             String TABLE_NAME = "TEMP_BATCH";
             DatabaseMetaData dbm = conn.getMetaData();
-            String createTableQuery = "CREATE TABLE " +  TABLE_NAME  + " ( WHAT_IS_YOUR_PURPOSE VARCHAR2(100))";
-            String[] insertQueries = new String[2000];
+            String createTableQuery = "CREATE TABLE " +  TABLE_NAME  + " ( data VARCHAR2(100))";
+            String[] insertQueries = new String[10];
             for(int i = 0; i< insertQueries.length; i++) {
-                String data = "To help fellow being " + i;
-                insertQueries[i] = "INSERT INTO " +  TABLE_NAME  + " VALUES(' " + data + " ')";
+                if(i != 7) {
+                    String data = "To help fellow being " + i;
+                    insertQueries[i] = "INSERT INTO " +  TABLE_NAME  + " VALUES(' " + data + " ')";
+                } else {
+                    // Inspect the result for 7th position and it would reflect the number of rows effected by this operation
+                    insertQueries[i] = "UPDATE " + TABLE_NAME + " set data = 'RESET'";
+                }
+
             }
 
             boolean autoCommit = conn.getAutoCommit();
@@ -36,9 +42,10 @@ public class SQLTest07 extends AbstractSQLTestRunner {
             for(int i = 0; i< insertQueries.length; i++) {
                 statement.addBatch(insertQueries[i]);
             }
-            statement.executeBatch();
+            int[] result = statement.executeBatch();
+
             conn.commit();
-            conn.setAutoCommit(true);
+            conn.setAutoCommit(autoCommit);
         } catch (SQLException e) {
             e.printStackTrace();
             conn.rollback();
