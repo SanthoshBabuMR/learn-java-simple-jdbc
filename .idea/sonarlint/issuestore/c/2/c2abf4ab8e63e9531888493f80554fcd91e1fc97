@@ -1,12 +1,0 @@
-
-E
-java:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8˜ËŠ‹³.
-@
-java:S1148&"#Use a logger to log this exception.(Ç’Çê8¦›ØÜ³.
-U
-java:S1197"8Move the array designator from the variable to the type.(ãž¸Ï8˜ËŠ‹³.
-i
-java:S2095<"GUse try-with-resources or close this "Statement" in a "finally" clause.(Çõåùÿÿÿÿ8˜ËŠ‹³.
-c
-java:S1075c"ARefactor your code to get this URI from a customizable parameter.(•³´ˆüÿÿÿÿ8ØÁ¸Ü³.
-Z	java:S106L"9Replace this use of System.out or System.err by a logger.(ù›šøÿÿÿÿ8˜ËŠ‹³.

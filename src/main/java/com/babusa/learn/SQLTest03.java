@@ -3,12 +3,6 @@ package com.babusa.learn;
 import java.io.IOException;
 import java.sql.*;
 
-/*
- * Running in IntelliJ doesn't work
- * down ojdbc jar to local and point classpath to it
- * cmd: export CLASSPATH=.:/tmp/OJDBC-Full/ojdbc6.jar  && javac com/babusa/learn/SQLTest01.java && java com.babusa.learn.SQLTest01
- */
-
 public class SQLTest03 extends AbstractSQLTestRunner {
 
     public static void main(String args[]) throws IOException {
